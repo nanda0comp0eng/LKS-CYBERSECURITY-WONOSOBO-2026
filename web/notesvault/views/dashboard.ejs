@@ -1,0 +1,40 @@
+<%- include('partials/header') %>
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <h2>My Private Vault</h2>
+</div>
+
+<div class="create-note-card">
+    <form id="createNoteForm">
+        <div class="form-group">
+            <input type="text" name="title" placeholder="What's the title?" required>
+        </div>
+        <div class="form-group">
+            <textarea name="content" rows="3" placeholder="Start typing your secret thoughts..." required></textarea>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <label style="font-size: 0.85rem; color: var(--text-muted); cursor: pointer;">
+                <input type="checkbox" name="isPublic" style="margin-right: 5px;"> Make Public
+            </label>
+            <button type="submit" class="btn btn-sm">Save Note</button>
+        </div>
+    </form>
+</div>
+
+<div class="grid">
+    <% if (notes.length === 0) { %>
+        <p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 2rem;">Your vault is empty.</p>
+    <% } %>
+    
+    <% notes.forEach(note => { %>
+        <div class="card">
+            <a href="/notes?uuid=<%= note.uuid %>" style="text-decoration: none;">
+                <span class="note-title"><%= note.title %></span>
+                <div class="note-meta">
+                    <span><%= new Date(note.created_at).toLocaleDateString() %></span>
+                    <span class="badge <%= note.is_public ? '' : 'private' %>"><%= note.is_public ? 'Public' : 'Private' %></span>
+                </div>
+            </a>
+        </div>
+    <% }); %>
+</div>

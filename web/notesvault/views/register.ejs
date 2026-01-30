@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+
+<div class="auth-container">
+    <h2 class="text-center">Create account</h2>
+    
+    <% if (error) { %>
+        <div class="error-msg"><%= error %></div>
+    <% } %>
+
+    <form action="/register" method="POST">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required autofocus>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn" style="width: 100%; margin-top: 8px;">Sign Up</button>
+    </form>
+    
+    <p class="text-center" style="margin-top: 20px; font-size: 0.9rem;">
+        Already have an account? <a href="/login" style="text-decoration: underline;">Login</a>
+    </p>
+</div>
+</body></html>

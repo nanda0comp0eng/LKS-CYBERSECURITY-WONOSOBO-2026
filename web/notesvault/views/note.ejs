@@ -1,0 +1,19 @@
+<%- include('partials/header') %>
+
+<div class="note-view">
+    <div class="mb-4">
+        <a href="javascript:history.back()" class="text-muted">← Back</a>
+    </div>
+
+    <div class="card" style="border: none; padding: 0;">
+        <h1><%= note.title %></h1>
+        
+        <div class="note-meta" style="border-bottom: 1px solid var(--border-color); padding-bottom: 20px;">
+            <span><%= note.username ? 'by ' + note.username : '' %></span>
+            <span class="badge <%= note.is_public ? '' : 'private' %>"><%= note.is_public ? 'Public' : 'Private' %></span>
+        </div>
+
+        <div class="note-view-content"><%= note.content %></div>
+    </div>
+</div>
+</body></html>

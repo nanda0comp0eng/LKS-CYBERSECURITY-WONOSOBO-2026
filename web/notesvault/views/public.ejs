@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+
+<div class="mb-4">
+    <h2>Public Feed</h2>
+    <p>Discover what others are sharing.</p>
+</div>
+
+<div class="grid">
+    <% if (notes.length === 0) { %>
+        <p class="text-center">No public notes available.</p>
+    <% } %>
+    
+    <% notes.forEach(note => { %>
+        <div class="card">
+            <a href="/notes?uuid=<%= note.uuid %>">
+                <span class="note-title"><%= note.title %></span>
+                <div class="note-meta">
+                    <span>by <a href="/profile/<%= note.username %>" style="text-decoration: underline;"><%= note.username %></a></span>
+                    <span><%= new Date(note.created_at).toLocaleDateString() %></span>
+                </div>
+            </a>
+        </div>
+    <% }); %>
+</div>
+</body></html>

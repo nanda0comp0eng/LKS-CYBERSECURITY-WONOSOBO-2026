@@ -1,0 +1,18 @@
+<%- include('partials/header') %>
+
+<div class="hero-section">
+    <h1>Secure thoughts,<br>stored simply.</h1>
+    <p>
+        A minimalist platform for your ideas. Keep them private or share them with the world.
+    </p>
+    
+    <% if (!user) { %>
+        <a href="/register" class="btn">Get Started</a>
+        <a href="/login" class="btn btn-outline" style="margin-left: 10px;">Login</a>
+    <% } else { %>
+        <a href="/dashboard" class="btn">Go to Dashboard</a>
+    <% } %>
+</div>
+
+</body>
+</html>

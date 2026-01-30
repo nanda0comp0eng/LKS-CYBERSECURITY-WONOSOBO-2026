@@ -1,0 +1,44 @@
+<%- include('partials/header') %>
+
+<div class="profile-header">
+    <div class="profile-name"><%= profileUser.username %></div>
+    <div class="profile-bio"><%= profileUser.bio || 'No bio available.' %></div>
+</div>
+
+<h3 class="mb-4">Public Notes</h3>
+<div id="notesList" class="grid">
+    <p class="text-muted">Loading notes...</p>
+</div>
+
+<script>
+    // Fetch notes via API (This is where the vulnerability lies!)
+    fetch('/api/profile/<%= profileUser.username %>')
+        .then(res => res.json())
+        .then(data => {
+            const container = document.getElementById('notesList');
+            container.innerHTML = '';
+            
+            if (!data.notes || data.notes.length === 0) {
+                container.innerHTML = '<p class="text-muted">No notes found.</p>';
+                return;
+            }
+            
+            data.notes.forEach(note => {
+                // The frontend "hides" private notes, but the API sends them!
+                if (note.is_public) {
+                    const date = new Date(note.created_at || Date.now()).toLocaleDateString();
+                    container.innerHTML += `
+                        <div class="card">
+                            <a href="/notes?uuid=${note.uuid}">
+                                <span class="note-title">${note.title}</span>
+                                <div class="note-meta">
+                                    <span>${date}</span>
+                                </div>
+                            </a>
+                        </div>
+                    `;
+                }
+            });
+        });
+</script>
+</body></html>
