@@ -273,7 +273,7 @@ Try these advanced variations:
 
 Created for CTF practice - IDOR vulnerability exploitation
 
-**Flag Format:** `FLAG{...}`
+**Flag Format:** `LKSWNSB{...}`
 
 FLAG: LKSWNSB{1d0r_l3ak5_uU1D5_3v3rywh3r3}
 
