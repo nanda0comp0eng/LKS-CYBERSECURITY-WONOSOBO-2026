@@ -123,7 +123,7 @@ print(flag)
 Hasil dekripsi adalah:
 
 ```
-LKS_NIT{xord_is_anywhere}
+LKSWNSB{xor_lagi_xor_lagi}
 ```
 
 ---
@@ -133,7 +133,7 @@ LKS_NIT{xord_is_anywhere}
 Masukkan hasil dekripsi ke program:
 
 ```
-Enter the flag: LKS_NIT{xord_is_anywhere}
+Enter the flag: LKSWNSB{xor_lagi_xor_lagi}
 ```
 
 Program akan menampilkan:
@@ -158,5 +158,5 @@ Challenge ini melatih:
 ## Flag
 
 ```
-LKS_NIT{xord_is_anywhere}
+LKSWNSB{xor_lagi_xor_lagi}
 ```
