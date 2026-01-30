@@ -1,10 +1,11 @@
-# NotesVault - CTF Challenge (IDOR Vulnerability)
+# NotesVault
 
 ## Challenge Description
 
 **Difficulty:** Beginner-Intermediate  
-**Category:** Web Security  
-**Flag:** `FLAG{1d0r_l3ak5_uU1D5_3v3rywh3r3}`
+**Category:** Web Security 
+**Author:** pyrg  
+**Flag:** `LKSWNSB{1d0r_l3ak5_uU1D5_3v3rywh3r3}`
 
 NotesVault is a secure note-taking platform where users can create public or private notes. The admin user has left a secret flag in a private note. Can you find it?
 
