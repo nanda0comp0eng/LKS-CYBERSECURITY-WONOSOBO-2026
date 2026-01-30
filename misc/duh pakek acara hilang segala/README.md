@@ -8,7 +8,7 @@
 ## Deskripsi
 
 ini di mana yak? damkar mau dateng tapi yang lapor malah hilang tanpa ada kabar dan kepastian. 
-NB: format flag LKSWNSB{nama lokasi sesua google maps, ganti spasi dengan underscore/garis bawah(_)}
+NB: format flag LKSWNSB{nama lokasi sesua google maps, ganti spasi dengan underscore/garis bawah(_), gunakan huruf kecil/lowercase}
 
 ## Hint
 
@@ -16,4 +16,5 @@ ungu?
 
 ---
 
-LKSWNSB{Universitas_Amikom_Yogyakarta}
+LKSWNSB{universitas_amikom_yogyakarta}
+
