@@ -1,0 +1,10 @@
+randKey
+
+Category: Cryptography
+Difficulty: Easy
+Author: pyrg
+Deskripsi
+
+sesuai Kisi Kisi Saja
+
+Flag: LKSWNSB{xor_adalah_king_algo_for_crypto_textsetelahinicumbadibuatbiarchallnyapanjangajasih_biarkeliatansusahpadahalgampangbangetyaaa}
