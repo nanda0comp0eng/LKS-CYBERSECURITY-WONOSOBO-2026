@@ -1,4 +1,4 @@
-** Solution Walkthrough **
+**Solution Walkthrough**
 
 Vulnerability : Websocket Blind SQL Injection
 
@@ -106,4 +106,4 @@ if __name__ == "__main__":
                 exit()
 ```
 
-** Flag : LKSWNSB{SqLI_TT4Api1_BbutT44444} **
+**Flag : LKSWNSB{SqLI_TT4Api1_BbutT44444}**

