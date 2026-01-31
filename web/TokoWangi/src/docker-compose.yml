@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  web:
+    build: .
+    ports:
+      - "8001:5000"
+    environment:
+      - DB_HOST=db
+      - DB_USER=ctf
+      - DB_PASS=ctfpass
+      - DB_NAME=shop
+      - CTF_FLAG=LKSWNSB{pr!ce_tampering_1s_b4d_ev3n_my_Gr4ndma_kn0ws_it}
+      - DB_RETRIES=30
+      - DB_RETRY_DELAY=1
+    depends_on:
+      - db
+  db:
+    image: mariadb:10.5
+    environment:
+      MYSQL_DATABASE: shop
+      MYSQL_USER: ctf
+      MYSQL_PASSWORD: ctfpass
+      MYSQL_ROOT_PASSWORD: rootpass
+    volumes:
+      - db_data:/var/lib/mysql
+volumes:
+  db_data:

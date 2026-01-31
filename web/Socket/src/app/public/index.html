@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Live Order Verification</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="bg"></div>
+
+  <main class="container">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">LV</div>
+        <div>
+          <div class="title">Live Verification</div>
+          <div class="subtitle">real-time pickup desk tool</div>
+        </div>
+      </div>
+      <div id="status" class="pill">Disconnected</div>
+    </header>
+
+    <section class="card">
+      <h1>Verify a Pickup</h1>
+      <p class="muted">Enter the order details exactly as provided to the student.</p>
+
+      <div class="form">
+        <label>Order ID</label>
+        <input id="orderId" placeholder="e.g., A10293" autocomplete="off" />
+
+        <label>Email</label>
+        <input id="email" placeholder="e.g., sigma@school.local" autocomplete="off" />
+
+        <button id="btn" class="btn">Verify</button>
+      </div>
+
+      <div class="result">
+        <div class="result-label">Result</div>
+        <div id="resultText" class="result-box">—</div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const statusEl = document.getElementById("status");
+    const resultEl = document.getElementById("resultText");
+    const btn = document.getElementById("btn");
+    const orderIdEl = document.getElementById("orderId");
+    const emailEl = document.getElementById("email");
+
+    const wsUrl = (location.protocol === "https:" ? "wss://" : "ws://") + location.host + "/ws";
+    const ws = new WebSocket(wsUrl);
+
+    function setStatus(text, ok) {
+      statusEl.textContent = text;
+      statusEl.classList.toggle("good", !!ok);
+    }
+
+    ws.onopen = () => setStatus("Connected", true);
+    ws.onclose = () => setStatus("Disconnected", false);
+    ws.onerror = () => setStatus("Disconnected", false);
+
+    ws.onmessage = (evt) => {
+      let msg;
+      try { msg = JSON.parse(evt.data); } catch { return; }
+      if (msg.type === "result") {
+        resultEl.textContent = msg.ok ? "AUTHORIZED ✅" : "DENIED ❌";
+        resultEl.classList.toggle("ok", !!msg.ok);
+        resultEl.classList.toggle("bad", !msg.ok);
+      }
+    };
+
+    btn.onclick = () => {
+      resultEl.textContent = "—";
+      resultEl.classList.remove("ok", "bad");
+      ws.send(JSON.stringify({
+        type: "verify",
+        orderId: orderIdEl.value,
+        email: emailEl.value
+      }));
+    };
+  </script>
+</body>
+</html>

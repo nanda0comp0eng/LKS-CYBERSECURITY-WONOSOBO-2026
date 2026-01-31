@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Perfume Shop</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <h1>✨ Perfume Shop ✨</h1>
+      <div class="header-right">
+        <span>💰 Balance: <strong>{{ balance }}</strong></span>
+        <a class="link-btn" href="/logout">Logout</a>
+      </div>
+    </header>
+    <main class="container">
+      <h2 style="text-align:center;color:#a67c52">Koleksi Parfum Premium Kami</h2>
+      <div class="items-grid">
+        {% for id, name, price in items %}
+        <div class="item-card">
+          <div class="item-header">
+            <p class="item-id">Item #{{ id }}</p>
+            <h3 class="item-name">{{ name }}</h3>
+            <p class="item-price">Rp{{ price }}</p>
+          </div>
+          <div class="item-body">
+            <form method="post" action="/buy" class="buy-form">
+              <input type="hidden" name="item_id" value="{{ id }}" />
+              <input type="hidden" name="price" value="{{ price }}" />
+              <button type="submit" class="btn">🛍️ Buy Now</button>
+            </form>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </main>
+  </body>
+</html>

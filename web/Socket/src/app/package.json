@@ -1,0 +1,11 @@
+{
+  "name": "ws-blind-sqli-ctf",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mysql2": "^3.11.3",
+    "ws": "^8.18.0"
+  }
+}
