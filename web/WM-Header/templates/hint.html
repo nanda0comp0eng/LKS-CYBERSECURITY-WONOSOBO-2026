@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}LKSWNSB — Hint{% endblock %}
+
+{% block content %}
+<div class="card">
+    <span class="tag tag-red">● Hint</span>
+    <h1>Need a Push?</h1>
+    <h2>// Hints — Use Wisely</h2>
+
+    <p>
+        Stuck? Don't worry. Below are progressive hints. Try to solve it
+        with as few hints as possible — bragging rights are on the line.
+    </p>
+
+    <hr class="divider">
+
+    <div class="code-block" id="hint-box">
+        <span class="comment"># Click to reveal each hint</span><br><br>
+
+        <span class="key">Hint 1:</span>
+        <span class="dim" id="h1" onclick="this.style.color='#c8d6e5'; this.style.cursor='default';" style="cursor:pointer;">
+            ████████████████████████████████████████
+        </span><br><br>
+
+        <span class="key">Hint 2:</span>
+        <span class="dim" id="h2" onclick="this.style.color='#c8d6e5'; this.style.cursor='default';" style="cursor:pointer;">
+            ████████████████████████████████████████████████████
+        </span><br><br>
+
+    </div>
+
+    <p style="margin-top:1.2rem; font-size:0.78rem; color:var(--clr-text-dim);">
+        Click each █████ block above to reveal the hint.
+    </p>
+</div>
+
+<script>
+    document.getElementById('h1').addEventListener('click', function() {
+        this.textContent = "The flag is not in the HTML. It's not in the source code you can view.";
+    });
+    document.getElementById('h2').addEventListener('click', function() {
+        this.textContent = "HTTP responses carry more than just a body. Look at the metadata traveling with the response.";
+    });
+</script>
+{% endblock %}

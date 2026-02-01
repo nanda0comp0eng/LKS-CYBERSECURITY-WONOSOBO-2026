@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}LKSWNSB — About{% endblock %}
+
+{% block content %}
+<div class="card">
+    <span class="tag tag-green">● Intel</span>
+    <h1>About the Challenge</h1>
+    <h2>// Briefing</h2>
+
+    <p>
+        <strong style="color:#fff">LKSWNSB</strong> is an annual Capture The Flag competition
+        designed to test the boundaries of web security knowledge.
+        This challenge — <em>Header Juggling</em> — targets a commonly overlooked
+        attack surface: <strong style="color:#fff">HTTP response headers</strong>.
+    </p>
+
+    <hr class="divider">
+
+    <h2>// Why Headers?</h2>
+    <p>
+        Developers often store sensitive information in HTTP headers without realizing
+        how easily they can be intercepted or exposed. API keys, tokens, internal system
+        names — all can leak through a careless custom header.
+    </p>
+    <p>
+        In this challenge, an administrator has mistakenly placed a secret flag
+        inside a custom response header. Your job: retrieve it.
+    </p>
+
+    <hr class="divider">
+
+    <h2>// Rules</h2>
+    <div class="code-block">
+        <span class="key">1.</span> No brute-forcing or fuzzing tools required.<br>
+        <span class="key">2.</span> The flag format is: <span class="val">LKSWNSB{...}</span><br>
+        <span class="key">3.</span> Inspect. Don't guess.<br>
+        <span class="key">4.</span> Have fun. <span class="blink"></span>
+    </div>
+</div>
+{% endblock %}

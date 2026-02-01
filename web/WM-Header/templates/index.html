@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}LKSWNSB — Home{% endblock %}
+
+{% block content %}
+<div class="card">
+    <span class="tag tag-red">● Challenge Active</span>
+    <h1>Header Juggling</h1>
+    <h2>// Web — Easy</h2>
+
+    <p>
+        Welcome, hacker. A flag has been planted somewhere in this application.
+        You won't find it by reading the page. You won't find it by viewing the source.
+        It's hidden in a place most people never look.
+    </p>
+
+    <hr class="divider">
+
+    <p class="accent">» What do you see when a browser talks to a server?</p>
+    <p>
+        Every HTTP request and response carries <strong style="color:#fff">headers</strong> —
+        invisible metadata that travels behind the scenes. The flag is not on the page.
+        It is <em>in the conversation</em>.
+    </p>
+
+    <hr class="divider">
+
+    <p style="margin-top:1.6rem; color: var(--clr-text-dim); font-size:0.82rem;">
+        Good luck, soldier. <span class="blink"></span>
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}LKSWNSB — CTF Challenge{% endblock %}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap');
+
+        :root {
+            --clr-bg: #0a0e17;
+            --clr-surface: #111827;
+            --clr-border: #1e293b;
+            --clr-accent: #00ff88;
+            --clr-accent-dim: #00ff8833;
+            --clr-red: #ff3b5c;
+            --clr-red-dim: #ff3b5c22;
+            --clr-text: #c8d6e5;
+            --clr-text-dim: #4a5568;
+            --clr-yellow: #ffe066;
+        }
+
+        * {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--clr-bg);
+            color: var(--clr-text);
+            font-family: 'Share Tech Mono', monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ── Scanline Overlay ── */
+        body::after {
+            content: '';
+            position: fixed; inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0,0,0,0.15) 2px,
+                rgba(0,0,0,0.15) 4px
+            );
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* ── Animated BG Grid ── */
+        .bg-grid {
+            position: fixed; inset: 0;
+            background-image:
+                linear-gradient(var(--clr-border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--clr-border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%);
+            z-index: 0;
+            animation: gridDrift 40s linear infinite;
+        }
+        @keyframes gridDrift {
+            0% { background-position: 0 0; }
+            100% { background-position: 60px 60px; }
+        }
+
+        /* ── Navbar ── */
+        nav {
+            position: relative; z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2.5rem;
+            border-bottom: 1px solid var(--clr-border);
+            background: var(--clr-surface);
+        }
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.3rem;
+            color: var(--clr-accent);
+            text-shadow: 0 0 12px var(--clr-accent-dim);
+            letter-spacing: 3px;
+        }
+        .logo span { color: var(--clr-red); }
+        nav ul {
+            list-style: none;
+            display: flex; gap: 2rem;
+        }
+        nav ul li a {
+            color: var(--clr-text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color .3s, text-shadow .3s;
+        }
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--clr-accent);
+            text-shadow: 0 0 8px var(--clr-accent-dim);
+        }
+
+        /* ── Main Content ── */
+        main {
+            position: relative; z-index: 5;
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* ── Card ── */
+        .card {
+            background: var(--clr-surface);
+            border: 1px solid var(--clr-border);
+            border-radius: 10px;
+            padding: 2.4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--clr-accent), transparent);
+        }
+
+        /* ── Headings ── */
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 1.9rem;
+            color: #fff;
+            margin-bottom: 0.6rem;
+            letter-spacing: 1px;
+        }
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: var(--clr-accent);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.4rem;
+        }
+        p { line-height: 1.8; margin-bottom: 1rem; color: var(--clr-text); }
+
+        /* ── Tag / Badge ── */
+        .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+        .tag-red { background: var(--clr-red-dim); color: var(--clr-red); border: 1px solid var(--clr-red); }
+        .tag-green { background: var(--clr-accent-dim); color: var(--clr-accent); border: 1px solid var(--clr-accent); }
+
+        /* ── Code Block ── */
+        .code-block {
+            background: #0d1117;
+            border: 1px solid var(--clr-border);
+            border-radius: 8px;
+            padding: 1.2rem 1.5rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-size: 0.82rem;
+            line-height: 1.9;
+            color: #7ec8e3;
+        }
+        .code-block .dim { color: var(--clr-text-dim); }
+        .code-block .key { color: var(--clr-accent); }
+        .code-block .val { color: var(--clr-yellow); }
+        .code-block .comment { color: #4a5568; font-style: italic; }
+
+        /* ── Divider ── */
+        .divider {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--clr-border), transparent);
+            margin: 2rem 0;
+        }
+
+        /* ── Blinking cursor ── */
+        .blink {
+            display: inline-block;
+            width: 8px; height: 1rem;
+            background: var(--clr-accent);
+            animation: blink .8s step-end infinite;
+            vertical-align: middle;
+            margin-left: 4px;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* ── Footer ── */
+        footer {
+            position: relative; z-index: 5;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.72rem;
+            color: var(--clr-text-dim);
+            letter-spacing: 1px;
+            border-top: 1px solid var(--clr-border);
+        }
+
+        /* ── Utility ── */
+        .mt-2 { margin-top: 1rem; }
+        .accent { color: var(--clr-accent); }
+        .red { color: var(--clr-red); }
+    </style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<nav>
+    <div class="logo">LKS<span>WN</span>SB</div>
+    <ul>
+        <li><a href="/" {% if page == 'index' %}class="active"{% endif %}>Home</a></li>
+        <li><a href="/about" {% if page == 'about' %}class="active"{% endif %}>About</a></li>
+        <li><a href="/hint" {% if page == 'hint' %}class="active"{% endif %}>Hint</a></li>
+    </ul>
+</nav>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    © 2025 LKSWNSB CTF — All rights reserved. &nbsp;|&nbsp; The flag is closer than you think.
+</footer>
+
+</body>
+</html>
