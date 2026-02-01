@@ -2,7 +2,7 @@
 
 ### *Kategori:* Forensic
 ### *Author:* zuyy
-### *sha256:* 1fc8a9a8262d13fdd725f0d96ad8c4ecccced4c468d24fcbdf74416162de0e59
+### *sha256:* 8bbab468f80076f10d89dc472b640ea3e9c5be1532a1f2ba554709f478396301
 ---
 
 ## Deskripsi
@@ -17,3 +17,4 @@ analisa script berbahaya
 
 
 LKSWNSB{this_turns_out_to_be_a_dangerous_launcher_be_careful_friends!!9hy7665aa}
+
