@@ -1,5 +1,5 @@
 services:
-  db:
+  db-socket:
     image: mariadb:11
     environment:
       MARIADB_ROOT_PASSWORD: rootpass
@@ -17,7 +17,7 @@ services:
   app:
     build: ./app
     environment:
-      DB_HOST: db
+      DB_HOST: db-socket
       DB_USER: ctfuser
       DB_PASS: ctfpass
       DB_NAME: ctf
@@ -25,5 +25,5 @@ services:
     ports:
       - "8003:8080"
     depends_on:
-      db:
+      db-socket:
         condition: service_healthy

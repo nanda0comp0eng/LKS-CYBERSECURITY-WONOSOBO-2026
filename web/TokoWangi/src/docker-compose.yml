@@ -5,7 +5,7 @@ services:
     ports:
       - "8001:5000"
     environment:
-      - DB_HOST=db
+      - DB_HOST=db-toko
       - DB_USER=ctf
       - DB_PASS=ctfpass
       - DB_NAME=shop
@@ -13,8 +13,8 @@ services:
       - DB_RETRIES=30
       - DB_RETRY_DELAY=1
     depends_on:
-      - db
-  db:
+      - db-toko
+  db-toko:
     image: mariadb:10.5
     environment:
       MYSQL_DATABASE: shop
